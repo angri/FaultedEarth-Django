@@ -21,17 +21,21 @@ from django import forms
 from django.forms import ModelForm
 from geonode.observations.models import Observations, FaultSummary, Fault, Trace
 
+
 class Observation(forms.ModelForm):
     class Meta:
         model = Observations
-    
+
+
 class Summary(forms.ModelForm):
     class Meta:
         model = FaultSummary
 
+
 class Fault(forms.ModelForm):
     class Meta:
         model = Fault
+
 
 class Trace(forms.ModelForm):
     class Meta:

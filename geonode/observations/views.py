@@ -19,13 +19,13 @@
 
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
-from geonode.observations.forms import Observation
 from django.template import RequestContext
-from geonode.observations import models
 from django.views.decorators.csrf import csrf_exempt, csrf_response_exempt
 from django.http import HttpResponseRedirect
+from geonode.observations import models
+from geonode.observations.forms import Observation
 
-   
+
 #views for the observation form
 def obsform(request):
     if request.method == 'POST':
@@ -41,15 +41,17 @@ def obsform(request):
     return render_to_response('obsform_form.html', {'form': form},
                               context_instance=RequestContext(request))
 
+
 def new(request, summary_id):
     o = models.Observations(summary_id=summary_id)
     o.save()
 
-    return HttpResponseRedirect('/observations/obsform/edit/%s/summary_id/%s' % (o.id, o.summary_id))
+    return HttpResponseRedirect('/observations/obsform/edit/%s/summary_id/%s' %
+                                (o.id, o.summary_id))
 
 
 def edit(request, observation_id, summary_id):
-    """  
+    """
     The view that returns the Id filed from the fault summary table.
     """
 
@@ -71,6 +73,6 @@ def edit(request, observation_id, summary_id):
         o.summary_id = summary_id
 
         form = Observation(instance=o)
-    
+
     return render_to_response('obsform_form.html', {'form' : form},
                               context_instance=RequestContext(request))
