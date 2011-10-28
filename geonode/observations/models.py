@@ -196,7 +196,7 @@ class SiteObservation(models.Model):
         db_table = 'gem\".\"site_observation'
 
 
-class Observations(models.Model):
+class Observation(models.Model):
     OBS_TYPE = (
         ('0', 'Displacement'),
         ('1', 'Event'),

@@ -43,7 +43,7 @@ def obsform(request):
 
 
 def new(request, summary_id):
-    o = models.Observations(summary_id=summary_id)
+    o = models.Observation(summary_id=summary_id)
     o.save()
 
     return HttpResponseRedirect('/observations/obsform/edit/%s/summary_id/%s' %
@@ -57,7 +57,7 @@ def edit(request, observation_id, summary_id):
 
     if request.method == 'POST':
         if observation_id and summary_id:
-            o = get_object_or_404(models.Observations, pk=observation_id)
+            o = get_object_or_404(models.Observation, pk=observation_id)
             o.summary_id = summary_id
             form = Observation(request.POST,instance=o)
         else:
@@ -69,7 +69,7 @@ def edit(request, observation_id, summary_id):
                        'success' : 'Your observation was saved'},
                 context_instance=RequestContext(request))
     else:
-        o = get_object_or_404(models.Observations, pk=observation_id)
+        o = get_object_or_404(models.Observation, pk=observation_id)
         o.summary_id = summary_id
 
         form = Observation(instance=o)
