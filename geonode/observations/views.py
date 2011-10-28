@@ -20,34 +20,10 @@
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
-from django.views.decorators.csrf import csrf_exempt, csrf_response_exempt
 from django.http import HttpResponseRedirect
+
 from geonode.observations import models
-from geonode.observations.forms import Observation
-
-
-#views for the observation form
-def obsform(request):
-    if request.method == 'POST':
-        form = Observation(request.POST)
-        if form.is_valid():
-            form.save()
-            return render_to_response("obsform_form.html",
-                      {'form': form,
-                       'success' : 'Your observation was saved'},
-                context_instance=RequestContext(request))
-    else:
-        form = Observation()
-    return render_to_response('obsform_form.html', {'form': form},
-                              context_instance=RequestContext(request))
-
-
-def new(request, summary_id):
-    o = models.Observation(summary_id=summary_id)
-    o.save()
-
-    return HttpResponseRedirect('/observations/obsform/edit/%s/summary_id/%s' %
-                                (o.id, o.summary_id))
+from geonode.observations import forms
 
 
 def edit(request, observation_id, summary_id):
@@ -59,9 +35,9 @@ def edit(request, observation_id, summary_id):
         if observation_id and summary_id:
             o = get_object_or_404(models.Observation, pk=observation_id)
             o.summary_id = summary_id
-            form = Observation(request.POST,instance=o)
+            form = forms.Observation(request.POST, instance=o)
         else:
-            form = Observation(request.POST)
+            form = forms.Observation(request.POST)
         if form.is_valid():
             form.save()
             return render_to_response("obsform_form.html",
@@ -72,7 +48,7 @@ def edit(request, observation_id, summary_id):
         o = get_object_or_404(models.Observation, pk=observation_id)
         o.summary_id = summary_id
 
-        form = Observation(instance=o)
+        form = forms.Observation(instance=o)
 
     return render_to_response('obsform_form.html', {'form' : form},
                               context_instance=RequestContext(request))
