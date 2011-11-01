@@ -122,7 +122,7 @@ class Fault(models.Model):
         db_table = 'fault'
 
 class FaultSection(models.Model):
-    fault = models.ForeignKey('Fault')
+    fault = models.ManyToManyField('Fault')
     name = models.CharField(max_length=30)
     length_min = models.FloatField()
     length_max = models.FloatField()
@@ -173,7 +173,7 @@ class FaultSection(models.Model):
 class Trace(models.Model):
     tid = models.IntegerField()
     name = models.IntegerField(max_length=100, default='-1', blank=True)
-    fault_section = models.ForeignKey('FaultSection')
+    fault_section = models.ManyToManyField('FaultSection')
     fault_name = models.CharField(max_length=30)
     loc_meth = models.CharField(max_length=30)
     scale = models.IntegerField()
@@ -187,6 +187,7 @@ class Trace(models.Model):
 
 class SiteObservation(models.Model):
     geom = models.MultiLineStringField(srid=4326)
+    fault_section = models.ManyToManyField('FaultSection')
     scale = models.IntegerField()
     accuracy = models.IntegerField()
     feature = models.CharField(max_length=30)
