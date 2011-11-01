@@ -71,7 +71,7 @@ class FaultSource(models.Model):
     created = models.DecimalField(max_digits=4, decimal_places=3)
 
     class Meta:
-        db_table = 'gem\".\"fault_source'
+        db_table = 'fault_source'
 
 
 class Fault(models.Model):
@@ -119,7 +119,7 @@ class Fault(models.Model):
     created = models.DecimalField(max_digits=4, decimal_places=3)
 
     class Meta:
-        db_table = 'gem\".\"fault'
+        db_table = 'fault'
 
 class FaultSection(models.Model):
     fault = models.ForeignKey('Fault')
@@ -167,7 +167,7 @@ class FaultSection(models.Model):
     created = models.DecimalField(max_digits=4, decimal_places=3)
 
     class Meta:
-        db_table = 'gem\".\"fault_section'
+        db_table = 'fault_section'
 
 
 class Trace(models.Model):
@@ -182,7 +182,7 @@ class Trace(models.Model):
     geom = models.MultiLineStringField(srid=4326)
 
     class Meta:
-        db_table = 'gem\".\"trace'
+        db_table = 'trace'
 
 
 class SiteObservation(models.Model):
@@ -193,7 +193,7 @@ class SiteObservation(models.Model):
     notes = models.TextField()
 
     class Meta:
-        db_table = 'gem\".\"site_observation'
+        db_table = 'site_observation'
 
 
 class Observation(models.Model):
@@ -280,7 +280,7 @@ class Observation(models.Model):
     summary_id = models.CharField(max_length=100,  blank=True)
 
     class Meta:
-        db_table = 'gem\".\"observations_observations'
+        db_table = 'observations_observations'
 
 
 class FaultSummary(models.Model):
@@ -288,4 +288,4 @@ class FaultSummary(models.Model):
     name = models.IntegerField(max_length=100, default='-1', blank=True)
 
     class Meta:
-        db_table = 'gem\".\"fault_summary'
+        db_table = 'fault_summary'
