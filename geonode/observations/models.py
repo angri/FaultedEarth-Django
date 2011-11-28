@@ -22,180 +22,186 @@ from django.contrib.gis.db import models
 #observation db
 
 class FaultSource(models.Model):
-	source_nm = models.CharField(max_length=30)
-	length_min = models.FloatField()
-	length_max = models.FloatField()
-	length_pre = models.FloatField()
-	u_sm_d_min = models.FloatField()
-	u_sm_d_max = models.FloatField()
-	u_sm_d_pre = models.FloatField()
-	u_sm_d_com = models.FloatField()
-	low_d_min = models.FloatField()
-	low_d_max = models.FloatField()
-	low_d_pref = models.FloatField()
-	low_d_com = models.FloatField()
-	width = models.FloatField()
-	area = models.FloatField()
-	dip_min = models.IntegerField()
-	dip_max = models.IntegerField()
-	dip_pref = models.IntegerField()
-	dip_com = models.IntegerField()
-	dip_dir = models.IntegerField()
-	rake_min = models.IntegerField()
-	rake_max = models.IntegerField()
-	rake_pref = models.IntegerField()
-	rake_com = models.IntegerField()
-	slip_typ = models.CharField(max_length=30)
-	slip_com = models.IntegerField()
-	slip_r_min = models.IntegerField()
-	slip_r_max = models.IntegerField()
-	slip_r_pre = models.IntegerField()
-	slip_r_com = models.IntegerField()
-	magnitude = models.IntegerField()
-	aseis_slip = models.FloatField()
-	aseis_com = models.IntegerField()
-	dis_min = models.FloatField()
-	dis_max = models.FloatField()
-	dis_pref = models.FloatField()
-	re_int_min = models.IntegerField()
-	re_int_max = models.IntegerField()
-	re_int_pre = models.IntegerField()
-	mov_min = models.IntegerField()
-	mov_max = models.IntegerField()
-	mov_pref = models.IntegerField()
-	all_com = models.IntegerField()
-	compiler = models.CharField(max_length=30)
-	contrib = models.CharField(max_length=30)
-	geom = models.PolygonField(srid=4326)
-	created = models.DecimalField(max_digits=4, decimal_places=3)
-	
-	class Meta:
-		db_table = 'gem\".\"fault_source'
-		
+    source_nm = models.CharField(max_length=30)
+    length_min = models.FloatField()
+    length_max = models.FloatField()
+    length_pre = models.FloatField()
+    u_sm_d_min = models.FloatField()
+    u_sm_d_max = models.FloatField()
+    u_sm_d_pre = models.FloatField()
+    u_sm_d_com = models.FloatField()
+    low_d_min = models.FloatField()
+    low_d_max = models.FloatField()
+    low_d_pref = models.FloatField()
+    low_d_com = models.FloatField()
+    width = models.FloatField()
+    area = models.FloatField()
+    dip_min = models.IntegerField()
+    dip_max = models.IntegerField()
+    dip_pref = models.IntegerField()
+    dip_com = models.IntegerField()
+    dip_dir = models.IntegerField()
+    rake_min = models.IntegerField()
+    rake_max = models.IntegerField()
+    rake_pref = models.IntegerField()
+    rake_com = models.IntegerField()
+    slip_typ = models.CharField(max_length=30)
+    slip_com = models.IntegerField()
+    slip_r_min = models.IntegerField()
+    slip_r_max = models.IntegerField()
+    slip_r_pre = models.IntegerField()
+    slip_r_com = models.IntegerField()
+    magnitude = models.IntegerField()
+    aseis_slip = models.FloatField()
+    aseis_com = models.IntegerField()
+    dis_min = models.FloatField()
+    dis_max = models.FloatField()
+    dis_pref = models.FloatField()
+    re_int_min = models.IntegerField()
+    re_int_max = models.IntegerField()
+    re_int_pre = models.IntegerField()
+    mov_min = models.IntegerField()
+    mov_max = models.IntegerField()
+    mov_pref = models.IntegerField()
+    all_com = models.IntegerField()
+    compiler = models.CharField(max_length=30)
+    contrib = models.CharField(max_length=30)
+    geom = models.PolygonField(srid=4326)
+    created = models.DecimalField(max_digits=4, decimal_places=3)
+
+    class Meta:
+        db_table = 'gem\".\"fault_source'
+
+
 class FaultSourceTrace(models.Model):
-        geom = models.MultiLineStringField(srid=4326)
-        
-	class Meta:
-		db_table = 'gem\".\"fault_source_trace'
+    geom = models.MultiLineStringField(srid=4326)
+
+    class Meta:
+        db_table = 'gem\".\"fault_source_trace'
+
 
 class Fault(models.Model):
-	fault_name = models.CharField(max_length=30)
-	length_min = models.FloatField()
-	length_max = models.FloatField()
-	length_pre = models.FloatField()
-	strike = models.IntegerField()
-	episodi_is = models.CharField(max_length=30)
-	episodi_ac = models.CharField(max_length=30)
-	u_sm_d_min = models.FloatField()
-	u_sm_d_max = models.FloatField()
-	u_sm_d_pre = models.FloatField()
-	u_sm_d_com = models.FloatField()
-	low_d_min = models.FloatField()
-	low_d_max = models.FloatField()
-	low_d_pref = models.FloatField()
-	low_d_com = models.FloatField()
-	dip_min = models.IntegerField()
-	dip_max = models.IntegerField()
-	dip_pref = models.IntegerField()
-	dip_com = models.IntegerField()
-	dip_dir = models.IntegerField()
-	down_thro = models.IntegerField()
-	slip_typ = models.CharField(max_length=30)
-	slip_com = models.IntegerField()
-	slip_r_min = models.IntegerField()
-	slip_r_max = models.IntegerField()
-	slip_r_pre = models.IntegerField()
-	slip_r_com = models.IntegerField()
-	aseis_slip = models.FloatField()
-	aseis_com = models.IntegerField()
-	dis_min = models.FloatField()
-	dis_max = models.FloatField()
-	dis_pref = models.FloatField()
-	re_int_min = models.IntegerField()
-	re_int_max = models.IntegerField()
-	re_int_pre = models.IntegerField()
-	mov_min = models.IntegerField()
-	mov_max = models.IntegerField()
-	mov_pref = models.IntegerField()
-	all_com = models.IntegerField()
-	compiler = models.CharField(max_length=30)
-	contrib = models.CharField(max_length=30)
-	created = models.DecimalField(max_digits=4, decimal_places=3)
-	
-	class Meta:
-		db_table = 'gem\".\"fault'
-	
+    fault_name = models.CharField(max_length=30)
+    length_min = models.FloatField()
+    length_max = models.FloatField()
+    length_pre = models.FloatField()
+    strike = models.IntegerField()
+    episodi_is = models.CharField(max_length=30)
+    episodi_ac = models.CharField(max_length=30)
+    u_sm_d_min = models.FloatField()
+    u_sm_d_max = models.FloatField()
+    u_sm_d_pre = models.FloatField()
+    u_sm_d_com = models.FloatField()
+    low_d_min = models.FloatField()
+    low_d_max = models.FloatField()
+    low_d_pref = models.FloatField()
+    low_d_com = models.FloatField()
+    dip_min = models.IntegerField()
+    dip_max = models.IntegerField()
+    dip_pref = models.IntegerField()
+    dip_com = models.IntegerField()
+    dip_dir = models.IntegerField()
+    down_thro = models.IntegerField()
+    slip_typ = models.CharField(max_length=30)
+    slip_com = models.IntegerField()
+    slip_r_min = models.IntegerField()
+    slip_r_max = models.IntegerField()
+    slip_r_pre = models.IntegerField()
+    slip_r_com = models.IntegerField()
+    aseis_slip = models.FloatField()
+    aseis_com = models.IntegerField()
+    dis_min = models.FloatField()
+    dis_max = models.FloatField()
+    dis_pref = models.FloatField()
+    re_int_min = models.IntegerField()
+    re_int_max = models.IntegerField()
+    re_int_pre = models.IntegerField()
+    mov_min = models.IntegerField()
+    mov_max = models.IntegerField()
+    mov_pref = models.IntegerField()
+    all_com = models.IntegerField()
+    compiler = models.CharField(max_length=30)
+    contrib = models.CharField(max_length=30)
+    created = models.DecimalField(max_digits=4, decimal_places=3)
+
+    class Meta:
+        db_table = 'gem\".\"fault'
+
+
 class FaultSection(models.Model):
-	fault = models.ManyToManyField('Fault')
-	sec_name = models.CharField(max_length=30)
-	length_min = models.FloatField()
-	length_max = models.FloatField()
-	length_pre = models.FloatField()
-	strike = models.IntegerField()
-	episodi_is = models.CharField(max_length=30)
-	episodi_ac = models.CharField(max_length=30)
-	u_sm_d_min = models.FloatField()
-	u_sm_d_max = models.FloatField()
-	u_sm_d_pre = models.FloatField()
-	u_sm_d_com = models.FloatField()
-	low_d_min = models.FloatField()
-	low_d_max = models.FloatField()
-	low_d_pref = models.FloatField()
-	low_d_com = models.FloatField()
-	dip_min = models.IntegerField()
-	dip_max = models.IntegerField()
-	dip_pref = models.IntegerField()
-	dip_com = models.IntegerField()
-	dip_dir = models.IntegerField()
-	down_thro = models.IntegerField()
-	slip_typ = models.CharField(max_length=30)
-	slip_com = models.IntegerField()
-	slip_r_min = models.IntegerField()
-	slip_r_max = models.IntegerField()
-	slip_r_pre = models.IntegerField()
-	slip_r_com = models.IntegerField()
-	aseis_slip = models.FloatField()
-	aseis_com = models.IntegerField()
-	dis_min = models.FloatField()
-	dis_max = models.FloatField()
-	dis_pref = models.FloatField()
-	re_int_min = models.IntegerField()
-	re_int_max = models.IntegerField()
-	re_int_pre = models.IntegerField()
-	mov_min = models.IntegerField()
-	mov_max = models.IntegerField()
-	mov_pref = models.IntegerField()
-	all_com = models.IntegerField()
-	compiler = models.CharField(max_length=30)
-	contrib = models.CharField(max_length=30)
-	created = models.DecimalField(max_digits=4, decimal_places=3)
-	
-	class Meta:
-		db_table = 'gem\".\"fault_section'	
-	
+    fault = models.ManyToManyField('Fault')
+    sec_name = models.CharField(max_length=30)
+    length_min = models.FloatField()
+    length_max = models.FloatField()
+    length_pre = models.FloatField()
+    strike = models.IntegerField()
+    episodi_is = models.CharField(max_length=30)
+    episodi_ac = models.CharField(max_length=30)
+    u_sm_d_min = models.FloatField()
+    u_sm_d_max = models.FloatField()
+    u_sm_d_pre = models.FloatField()
+    u_sm_d_com = models.FloatField()
+    low_d_min = models.FloatField()
+    low_d_max = models.FloatField()
+    low_d_pref = models.FloatField()
+    low_d_com = models.FloatField()
+    dip_min = models.IntegerField()
+    dip_max = models.IntegerField()
+    dip_pref = models.IntegerField()
+    dip_com = models.IntegerField()
+    dip_dir = models.IntegerField()
+    down_thro = models.IntegerField()
+    slip_typ = models.CharField(max_length=30)
+    slip_com = models.IntegerField()
+    slip_r_min = models.IntegerField()
+    slip_r_max = models.IntegerField()
+    slip_r_pre = models.IntegerField()
+    slip_r_com = models.IntegerField()
+    aseis_slip = models.FloatField()
+    aseis_com = models.IntegerField()
+    dis_min = models.FloatField()
+    dis_max = models.FloatField()
+    dis_pref = models.FloatField()
+    re_int_min = models.IntegerField()
+    re_int_max = models.IntegerField()
+    re_int_pre = models.IntegerField()
+    mov_min = models.IntegerField()
+    mov_max = models.IntegerField()
+    mov_pref = models.IntegerField()
+    all_com = models.IntegerField()
+    compiler = models.CharField(max_length=30)
+    contrib = models.CharField(max_length=30)
+    created = models.DecimalField(max_digits=4, decimal_places=3)
+
+    class Meta:
+        db_table = 'gem\".\"fault_section'
+
+
 class Trace(models.Model):
-	tid = models.IntegerField()
-	fault_section = models.ManyToManyField('FaultSection')
-	loc_meth = models.CharField(max_length=30)
-	scale = models.BigIntegerField()
-	accuracy = models.BigIntegerField()
-	notes = models.TextField()
-	geom = models.MultiLineStringField(srid=4326)
-	
-	class Meta:
-		db_table = 'gem\".\"trace'
-		
+    tid = models.IntegerField()
+    fault_section = models.ManyToManyField('FaultSection')
+    loc_meth = models.CharField(max_length=30)
+    scale = models.BigIntegerField()
+    accuracy = models.BigIntegerField()
+    notes = models.TextField()
+    geom = models.MultiLineStringField(srid=4326)
+
+    class Meta:
+        db_table = 'gem\".\"trace'
+
+
 class SiteObservation(models.Model):
-	geom = models.MultiLineStringField(srid=4326)
-	fault_section = models.ManyToManyField('FaultSection')
-	scale = models.BigIntegerField()
-	accuracy = models.BigIntegerField()
-	s_feature = models.CharField(max_length=30)
-	notes = models.TextField()
-	
-	class Meta:
-		db_table = 'gem\".\"site_observation'
-	
+    geom = models.MultiLineStringField(srid=4326)
+    fault_section = models.ManyToManyField('FaultSection')
+    scale = models.BigIntegerField()
+    accuracy = models.BigIntegerField()
+    s_feature = models.CharField(max_length=30)
+    notes = models.TextField()
+
+    class Meta:
+        db_table = 'gem\".\"site_observation'
+
+
 class Observations(models.Model):
     OBS_TYPE = (
         ('0','Displacement'),
@@ -204,8 +210,8 @@ class Observations(models.Model):
         ('3','Seismogenic Geometry'),
         ('4','SlipRate'),
     )
-    observationType = models.CharField(max_length=1, choices=OBS_TYPE, 
-    blank=True)
+    observationType = models.CharField(max_length=1, choices=OBS_TYPE,
+                                       blank=True)
     SLIP_TYPE = (
         ('0','Reverse'),
         ('1','Thrust (dip <45)'),
@@ -222,7 +228,7 @@ class Observations(models.Model):
         ('12','Sinistral normal'),
     )
     slipType = models.CharField(max_length=1, choices=SLIP_TYPE,
-                               blank=True)
+                                blank=True)
     hv_ratio = models.CharField(max_length=100, blank=True)
     rake = models.CharField(max_length=100, blank=True)
     net_slip_rate_min = models.CharField(max_length=100, blank=True)
@@ -242,8 +248,8 @@ class Observations(models.Model):
         ('6','50 <100'),
         ('7','100 <200'),
     )
-    slip_rate_category = models.CharField(max_length=10, choices=SLIP_RATE_CAT, 
-    blank=True)
+    slip_rate_category = models.CharField(max_length=10, choices=SLIP_RATE_CAT,
+                                          blank=True)
     strike_slip_rate_min = models.CharField(max_length=100, blank=True)
     strike_slip_rate_max = models.CharField(max_length=100, blank=True)
     strike_slip_rate_pref = models.CharField(max_length=100, blank=True)
@@ -255,7 +261,8 @@ class Observations(models.Model):
     summary_id = models.CharField(max_length=100,  blank=True)
     class Meta:
         db_table = 'gem\".\"observations_observations'
-  
+
+
 class FaultSummary(models.Model):
     fid = models.IntegerField()
     name = models.IntegerField(max_length=100, default='-1', blank=True)
